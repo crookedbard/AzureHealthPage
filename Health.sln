@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A480613-A7F4-46B3-95DC-7D5C6643EA0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heartbeat", "src\Heartbeat\Heartbeat.csproj", "{9721467E-1655-43B2-A837-A2408BD553E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Debug|x86.ActiveCfg = Debug|x86
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Debug|x86.Build.0 = Debug|x86
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Release|x86.ActiveCfg = Release|x86
+		{9721467E-1655-43B2-A837-A2408BD553E4}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9721467E-1655-43B2-A837-A2408BD553E4} = {4A480613-A7F4-46B3-95DC-7D5C6643EA0B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BCC9387-71A3-4018-953F-D2CC4999951C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,77 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Health page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Contoso Service Health</h1>
+        <p>Environment - <span style="color: #0366d6; font-weight: bold">@Model.Environment</span></p>
+        <p>Here you can view the status of Contoso Services.<br/>New results are available every @Model.AvgLatencyPerMinutes minutes.</p>
+        <table class="server-status-table">
+            <thead>
+                <tr>
+                    <th>Product and services</th>
+                    @foreach (var location in Model.Locations)
+                    {
+                        <th>@location</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var stat in Model.ApplicationStatistics)
+                    {
+                <tr>
+                    <td>
+                        @stat.ApplicationName
+
+                        @if (stat.AvgAvailability > Model.MinAvailability)
+                            {
+                        <span class="bold blue" title="SLA of last @Model.AvgAvailabilityForDays days">@Math.Round(stat.AvgAvailability, 2)%</span>
+                            }
+                            else
+                            {
+                        <span class="bold red" title="SLA of last @Model.AvgAvailabilityForDays days">@Math.Round(stat.AvgAvailability, 2)%</span>
+                            }
+                    </td>
+
+                    @foreach (var location in Model.Locations)
+                    {
+                    <td>
+                        @if (stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.IsOnline == true)
+                                {
+                        <div class="check-icon" title="Online"></div>
+                        @if (stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency < Model.MaxLatency)
+                                    {
+                        <span class="small-table-text-check blue" title="Latency">@stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency ms</span>
+                                    }
+                                    else
+                                    {
+                        <span class="small-table-text-check red" title="Latency">@stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency ms</span>
+                                    }
+                                }
+                                else
+                                {
+                        <div class="close-icon" title="Online"></div>
+                        @if (stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency < Model.MaxLatency)
+                                    {
+                        <span class="small-table-text-close blue" title="Latency">@stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency ms</span>
+                                    }
+                                    else
+                                    {
+                        <span class="small-table-text-close red" title="Latency">@stat.LocationStatusAndLatencies.SingleOrDefault(i => i.LocationName == location)?.AvgLatency ms</span>
+                                    }
+                                }
+
+
+
+                    </td>
+            }
+                </tr>
+                    }
+               
+            </tbody>
+        </table>
+
+    </div>
