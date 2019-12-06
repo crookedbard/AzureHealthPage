@@ -10,8 +10,6 @@ namespace Heartbeat.Models
         public string ClientSecret { get; set; }
         public string AuthEndpoint { get; set; }
         public string TokenAudience { get; set; }
-
-        public DateTime StartCountAvailabilityFromDate { get; set; }
         public int AvgAvailabilityForDays { get; set; }
         public int AvgLatencyPerMinutes { get; set; }
         public double MinAvailability { get; set; }

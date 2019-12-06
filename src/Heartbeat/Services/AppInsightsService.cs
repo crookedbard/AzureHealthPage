@@ -51,13 +51,7 @@ namespace Heartbeat.Services
             if(applicationList.Count == 0) throw new ApplicationException("There should be at least 1 application defined in appSettings.json");
             client.AppId = applicationList[0];
 
-            var avgAvailabilityFromDateTime = DateTime.UtcNow.AddDays(-_appSettings.AvgAvailabilityForDays);
-            if (avgAvailabilityFromDateTime < _appSettings.StartCountAvailabilityFromDate)
-                avgAvailabilityFromDateTime = _appSettings.StartCountAvailabilityFromDate;
-
-            // Avg SLA for last 30 days
-            var availabilityResult = await client.QueryWithHttpMessagesAsync(
-                "let start_time=startofday(datetime('"+ avgAvailabilityFromDateTime.ToString("yyyy-MM-dd") + "'));let end_time=now(); availabilityResults | where timestamp > start_time and timestamp < end_time | summarize heartbeat_per_minutes=countif(success == 1) by bin_at(timestamp, 5m, start_time),appName | extend available_per_minutes=iff(heartbeat_per_minutes>0, true, false) | summarize total_available_minutes=countif(available_per_minutes==true) by appName | extend total_number_of_buckets=round((end_time-start_time)/5m)+1 | extend availability_rate=total_available_minutes*100/total_number_of_buckets",
+            var availabilityResult = await client.QueryWithHttpMessagesAsync("availabilityResults | summarize Succeeded = count(success == 1), Failed = count(success == 0) by appName | extend Availability = 100.0 - Failed * 100.0 / Succeeded ",
                 TimeSpan.FromDays(_appSettings.AvgAvailabilityForDays),
                 null,
                 applicationList);
