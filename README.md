@@ -18,6 +18,7 @@ Before starting to fill appsettings.json with your Azure Cloud details you need 
       1. Enter a name
       1. Select test type - URL ping test
       1. Enter your applications URL that you want to monitor the availability
+      1. Uncheck both boxes: Parse dependent requests & Enable retries for availability test failures.
       1. Test frequency > 5 minutes
       1. Test locations > select locations that are important to you and be consistent with them (select the same locations for all of your app insights resources). Write down the locations you have selected.
       1. Configure success criteria.
@@ -30,14 +31,13 @@ Before starting to fill appsettings.json with your Azure Cloud details you need 
 
 Open appsettings.json and fill the required fields:
 1. Domain - Get this from: portal.azure.com > Azure Active Directory > Overview > First line before you company name
-2. ClientId - Get this from: portal.azure.com > Azure Active Directory > App registrations > Your AD APP which has permissions to access all APP Insights > Overview > Application (client) ID
-3. ClientSecret - Get this from: portal.azure.com > Azure Active Directory > App registrations > Your AD APP which has permissions to access all APP Insights > Certificates & secrets > Client secrets > Create & copy secret
-4. StartCountAvailabilityFromDate - the date you want to start calculating the app availability (the date when you added application insights availability tests)
-5. AvgAvailabilityForDays - Default 30, calculates average availability for 30 days (if todays date minus 30 days is lower then StartCountAvailabilityFromDate -  then the value will be lowered. Meaning that you will see the real SLA for 30 days after those 30 days will pass, till then you will see SLA for 1,2,3 ... days).
-6. AvgLatencyPerMinutes - default 10. Calculates average per 10 minutes latency from specific location.
-7. MinAvailability - default 99.9. Your SLA %. If the value is lower than specified then the percentage will be displayed in red.
-8. MaxLatency - default 800. Your maximum allowed latency. If the value is higher than specified then the number will be displayed in red.
-9. Applications - enter all the resource names of your application insights resources that you have configured availability tests and granted reader access for Azure AD app.
-10. Locations - enter the same locations that you have written down before when you created the availability tests.
-11. ApplicationInsights:InstrumentationKey (optional) - if you want to monitor the healths app logs then configure application insights for this application. (Visual studio > Right click on project > Configure application insights )
+1. ClientId - Get this from: portal.azure.com > Azure Active Directory > App registrations > Your AD APP which has permissions to access all APP Insights > Overview > Application (client) ID
+1. ClientSecret - Get this from: portal.azure.com > Azure Active Directory > App registrations > Your AD APP which has permissions to access all APP Insights > Certificates & secrets > Client secrets > Create & copy secret
+1. AvgAvailabilityForDays - Default 30, calculates average availability for 30 days.
+1. AvgLatencyPerMinutes - default 10. Calculates average per 10 minutes latency from specific location.
+1. MinAvailability - default 99.9. Your SLA %. If the value is lower than specified then the percentage will be displayed in red.
+1. MaxLatency - default 800. Your maximum allowed latency. If the value is higher than specified then the number will be displayed in red.
+1. Applications - enter all the resource names of your application insights resources that you have configured availability tests and granted reader access for Azure AD app.
+1. Locations - enter the same locations that you have written down before when you created the availability tests.
+1. ApplicationInsights:InstrumentationKey (optional) - if you want to monitor the healths app logs then configure application insights for this application. (Visual studio > Right click on project > Configure application insights )
  
